@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chasedream">
+	<select id="selectPersonSigleNoCase" resultType="cn.dreamchase.chasedream.pojos.Person">
+		select * from person where id = '1'
+	</select>
+	
+	<!-- #{0} 是占位符，没有具体的含义，只是用于占位，当然，不使用0也可以，可以使用0，1，2，3。。。，同样，也可以使用英文字母或英文单词.
+		这种情况只是使用于传递的参数非实体类，也就是Bean类（entity、pojo）类，或者是 List/Set/Map等集合
+	-->
+	<select id="selectPersonSigleExistsCase" resultType="cn.dreamchase.chasedream.pojos.Person">
+		select * from person where id = #{0}
+	</select>
+	
+	<!-- 查询多条记录，返回List，泛型指定为Person -->
+	<select id="selectPersonsReturnListNoCase" resultType="cn.dreamchase.chasedream.pojos.Person">
+		select * from person
+	</select>
+	
+	<!-- 查询多条记录，返回List，泛型指定为Person -->
+	<select id="selectPersonsReturnListExistsCase" resultType="cn.dreamchase.chasedream.pojos.Person">
+		select * from person where age = #{age}
+	</select>
+	<!-- 查询多条记录，返回List，不指定泛型 
+		返回值 resultType="不能指定为java.util.List"，会有异常：java.lang.UnsupportedOperationException
+		当返回多个字段值，resultType="指定为Object、String等时，只能返回第一列的值"
+		当返回单个值，返回指定的值
+	-->
+	<select id="selectPersonsReturnListNoCaseNotFanXing" resultType="java.util.List">
+		select * from person where age = #{age}
+	</select>
+	
+	<!-- 查询多条记录，返回List，指定泛型为Map 
+		[{name=张浩, id=1, age=25}, {name=王磊, id=5, age=25}]
+	-->
+	<select id="selectPersonsReturnListFanXingIsMap" resultType="java.util.Map">
+		select * from person where age = #{age}
+	</select>
+	
+	<!-- 查询多条记录，返回List，指定泛型为List 
+		异常：java.lang.UnsupportedOperationException
+	-->
+	<select id="selectPersonsReturnListFanXingIsList" resultType="java.util.List">
+		select * from person where age = #{age}
+	</select>
+	
+	<!-- 查询多条记录，返回List，指定泛型为List ,嵌套 泛型
+		[Person [id=1, name=张浩, age=25], Person [id=5, name=王磊, age=25]]
+	-->
+	<select id="selectPersonsReturnListFanXingIsListInFX" resultType="cn.dreamchase.chasedream.pojos.Person">
+		select * from person where age = #{age}
+	</select>
+	
+	<!-- 查询多条记录，返回Map -->
+	<select id="selectPersonsReturnMap" resultType="java.util.Map">
+		select * from person
+	</select>
+	
+	<!-- 查询多条记录，返回实体类接收时使用Map -->
+	<select id="selectPersonsReturnEntityAcceptIsMap" resultType="cn.dreamchase.chasedream.pojos.Person">
+		select * from person
+	</select>
+	
+	<!-- 查询多条记录，返回List接收时使用Map
+		异常：java.lang.UnsupportedOperationException
+	-->
+	<select id="selectPersonsReturnListAcceptIsMap" resultType="java.util.List">
+		select * from person
+	</select>
+	
+	<!-- 查询多条记录，返回List,泛型为实体类接收时使用Map
+	-->
+	<select id="selectPersonsReturnListFXIsEntityAcceptIsMap" resultType="cn.dreamchase.chasedream.pojos.Person">
+		select * from person
+	</select>
+	
+</mapper>
