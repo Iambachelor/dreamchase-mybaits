@@ -298,5 +298,22 @@ public class StatementSet {
 			}
 		}
 	}
+
+	/**
+	 *
+	 * 查询多条记录
+	 * -返回字符串
+	 * -指定参数
+	
+	 */
+	public void selectPersonsReturnString() {
+		System.out.println("***************************");
+		SqlSession session = factory.openSession();
+		if (session != null) {
+			String name = session.selectOne("chasedream.selectPersonsReturnString");
+			
+			System.out.println(name);
+		}
+	}
 	
 }

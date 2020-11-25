@@ -12,6 +12,6 @@ public class App
     {
     	StatementSet statementSet = new StatementSet();
     	
-    	statementSet.selectPersonsReturnListFXIsEntityAcceptIsMap();
+    	statementSet.selectPersonsReturnString();
     }
 }
