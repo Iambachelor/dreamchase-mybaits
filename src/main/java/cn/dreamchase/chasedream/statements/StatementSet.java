@@ -125,6 +125,7 @@ public class StatementSet {
 	public void selectPersonsNoCaseNotFanXing() {
 		SqlSession session = factory.openSession();
 		if (session != null) {
+			@SuppressWarnings("rawtypes")
 			List persons = session.selectList("chasedream.selectPersonsReturnListNoCaseNotFanXing","25");
 			System.out.println(persons);
 			try {
@@ -165,6 +166,7 @@ public class StatementSet {
 	public void selectPersonsReturnListFanXingIsList() {
 		SqlSession session = factory.openSession();
 		if (session != null) {
+			@SuppressWarnings("rawtypes")
 			List<List> persons = session.selectList("chasedream.selectPersonsReturnListFanXingIsList","25");
 			System.out.println(persons);
 			try {
